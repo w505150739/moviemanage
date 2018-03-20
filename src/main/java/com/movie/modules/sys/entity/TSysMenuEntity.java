@@ -1,11 +1,13 @@
 package com.movie.modules.sys.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Setter
 @Getter
@@ -47,4 +49,13 @@ public class TSysMenuEntity implements Serializable{
      * 排序
      */
     private Integer orderNum;
+
+    /**
+     * ztree属性
+     */
+    @TableField(exist=false)
+    private Boolean open;
+
+    @TableField(exist=false)
+    private List<?> list;
 }

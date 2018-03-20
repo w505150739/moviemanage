@@ -1,6 +1,7 @@
 package com.movie.common.shiro;
 
 import com.movie.common.exception.GlobalException;
+import com.movie.common.utils.GlobalContants;
 import com.movie.modules.sys.entity.TSysUserTokenEntity;
 import com.movie.modules.sys.service.ShiroService;
 import com.movie.modules.sys.entity.TSysUserEntity;
@@ -60,7 +61,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         TSysUserTokenEntity tokenEntity = shiroService.queryByToken(accessToken);
         //token失效
         if(tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()){
-            throw new GlobalException("token失效，请重新登录",1001);
+            throw new GlobalException("token失效，请重新登录", GlobalContants.TOKEN_FAIL);
 //            throw new IncorrectCredentialsException("token失效，请重新登录");
         }
 

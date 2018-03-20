@@ -2,11 +2,13 @@ package com.movie.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.movie.common.base.ResultData;
+import com.movie.common.config.DeployUtil;
 import com.movie.common.shiro.TokenGenerator;
 import com.movie.modules.sys.dao.TSysUserTokenDao;
 import com.movie.modules.sys.entity.TSysUserEntity;
 import com.movie.modules.sys.entity.TSysUserTokenEntity;
 import com.movie.modules.sys.service.TSysUserTokenService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -16,8 +18,8 @@ import java.util.Map;
 @Service
 public class TSysUserTokenServiceImpl extends ServiceImpl<TSysUserTokenDao,TSysUserTokenEntity> implements TSysUserTokenService {
 
-    //12小时后过期
-    private final static int EXPIRE = 3600 * 12;
+    @Autowired
+    private DeployUtil deployUtil;
 
     @Override
     public ResultData createToken(TSysUserEntity user) {
@@ -28,7 +30,7 @@ public class TSysUserTokenServiceImpl extends ServiceImpl<TSysUserTokenDao,TSysU
         Date now = new Date();
         //过期时间
 //        Date expireTime = new Date(now.getTime() + EXPIRE * 1000);
-        Date expireTime = new Date(now.getTime() + 10 * 1000);
+        Date expireTime = new Date(now.getTime() + deployUtil.getExpiretime());
 
         //判断是否生成过token
         TSysUserTokenEntity tokenEntity = this.selectById(user.getUserId());
@@ -52,8 +54,7 @@ public class TSysUserTokenServiceImpl extends ServiceImpl<TSysUserTokenDao,TSysU
 
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("token", token);
-        obj.put("expire", EXPIRE);
-        obj.put("user",user);
+        obj.put("expire", deployUtil.getExpiretime());
         return new ResultData(obj);
     }
 

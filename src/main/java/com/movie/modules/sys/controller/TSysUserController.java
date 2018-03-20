@@ -25,7 +25,7 @@ import java.util.Map;
  * @date 2018-03-17 22:04:53
  */
 @RestController
-@RequestMapping("sys/tsysuser")
+@RequestMapping("sys/user")
 public class TSysUserController {
     @Autowired
     private TSysUserService tSysUserService;
