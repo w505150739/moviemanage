@@ -2,9 +2,9 @@ package com.movie.common.shiro;
 
 import com.movie.common.exception.GlobalException;
 import com.movie.common.utils.GlobalContants;
-import com.movie.modules.sys.entity.TSysUserTokenEntity;
+import com.movie.modules.sys.entity.SysUserEntity;
+import com.movie.modules.sys.entity.SysUserTokenEntity;
 import com.movie.modules.sys.service.ShiroService;
-import com.movie.modules.sys.entity.TSysUserEntity;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -39,7 +39,7 @@ public class OAuth2Realm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        TSysUserEntity user = (TSysUserEntity)principals.getPrimaryPrincipal();
+        SysUserEntity user = (SysUserEntity)principals.getPrimaryPrincipal();
         Long userId = user.getUserId();
 
         //用户权限列表
@@ -58,7 +58,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         String accessToken = (String) token.getPrincipal();
 
         //根据accessToken，查询用户信息
-        TSysUserTokenEntity tokenEntity = shiroService.queryByToken(accessToken);
+        SysUserTokenEntity tokenEntity = shiroService.queryByToken(accessToken);
         //token失效
         if(tokenEntity == null || tokenEntity.getExpireTime().getTime() < System.currentTimeMillis()){
             throw new GlobalException("token失效，请重新登录", GlobalContants.TOKEN_FAIL);
@@ -66,7 +66,7 @@ public class OAuth2Realm extends AuthorizingRealm {
         }
 
         //查询用户信息
-        TSysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
+        SysUserEntity user = shiroService.queryUser(tokenEntity.getUserId());
         //账号锁定
         if(user.getStatus() == 0){
             throw new LockedAccountException("账号已被锁定,请联系管理员");

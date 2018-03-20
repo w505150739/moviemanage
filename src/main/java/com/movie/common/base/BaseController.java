@@ -1,6 +1,6 @@
 package com.movie.common.base;
 
-import com.movie.modules.sys.entity.TSysUserEntity;
+import com.movie.modules.sys.entity.SysUserEntity;
 import org.apache.shiro.SecurityUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class BaseController {
 
-    protected TSysUserEntity getUser() {
-        return (TSysUserEntity) SecurityUtils.getSubject().getPrincipal();
+    protected SysUserEntity getUser() {
+        return (SysUserEntity) SecurityUtils.getSubject().getPrincipal();
     }
 
     protected Long getUserId() {

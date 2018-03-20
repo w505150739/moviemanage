@@ -1,15 +1,15 @@
 package com.movie.modules.sys.service;
 
-import com.movie.modules.sys.entity.TSysUserTokenEntity;
-import com.movie.modules.sys.entity.TSysUserEntity;
+import com.movie.modules.sys.entity.SysUserEntity;
+import com.movie.modules.sys.entity.SysUserTokenEntity;
 
 import java.util.Set;
 
 /**
  * shiro相关接口
- * @author liuyuzhu
- * @email liuyuzhu.1314@gmail.com
- * @date 2018-03-17 22:04:53
+ * @author chenshun
+ * @email sunlightcs@gmail.com
+ * @date 2017-06-06 8:49
  */
 public interface ShiroService {
     /**
@@ -17,11 +17,11 @@ public interface ShiroService {
      */
     Set<String> getUserPermissions(long userId);
 
-    TSysUserTokenEntity queryByToken(String token);
+    SysUserTokenEntity queryByToken(String token);
 
     /**
      * 根据用户ID，查询用户
      * @param userId
      */
-    TSysUserEntity queryUser(Long userId);
+    SysUserEntity queryUser(Long userId);
 }

@@ -1,7 +1,7 @@
 package com.movie.common.utils;
 
 import com.movie.common.exception.GlobalException;
-import com.movie.modules.sys.entity.TSysUserEntity;
+import com.movie.modules.sys.entity.SysUserEntity;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -15,8 +15,8 @@ public class ShiroUtils {
         return SecurityUtils.getSubject();
     }
 
-    public static TSysUserEntity getUserEntity() {
-        return (TSysUserEntity)SecurityUtils.getSubject().getPrincipal();
+    public static SysUserEntity getUserEntity() {
+        return (SysUserEntity)SecurityUtils.getSubject().getPrincipal();
     }
 
     public static Long getUserId() {

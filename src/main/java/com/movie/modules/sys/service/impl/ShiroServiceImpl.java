@@ -1,14 +1,18 @@
 package com.movie.modules.sys.service.impl;
 
-import com.movie.modules.sys.dao.TSysUserDao;
-import com.movie.modules.sys.dao.TSysUserTokenDao;
-import com.movie.modules.sys.entity.TSysUserEntity;
-import com.movie.modules.sys.entity.TSysUserTokenEntity;
+import com.movie.common.utils.GlobalContants;
+import com.movie.modules.sys.dao.SysMenuDao;
+import com.movie.modules.sys.dao.SysUserDao;
+import com.movie.modules.sys.dao.SysUserTokenDao;
+import com.movie.modules.sys.entity.SysMenuEntity;
+import com.movie.modules.sys.entity.SysUserEntity;
+import com.movie.modules.sys.entity.SysUserTokenEntity;
 import com.movie.modules.sys.service.ShiroService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -16,28 +20,27 @@ import java.util.Set;
 
 @Service
 public class ShiroServiceImpl implements ShiroService {
-//    @Autowired
-//    private SysMenuDao sysMenuDao;
     @Autowired
-    private TSysUserDao sysUserDao;
+    private SysMenuDao sysMenuDao;
     @Autowired
-    private TSysUserTokenDao sysUserTokenDao;
+    private SysUserDao sysUserDao;
+    @Autowired
+    private SysUserTokenDao sysUserTokenDao;
 
     @Override
     public Set<String> getUserPermissions(long userId) {
         List<String> permsList;
 
         //系统管理员，拥有最高权限
-//        if(userId == GlobalContants.SUPER_ADMIN){
-//            List<TSysMenuEntity> menuList = sysMenuDao.selectList(null);
-//            permsList = new ArrayList<>(menuList.size());
-//            for(TSysMenuEntity menu : menuList){
-//                permsList.add(menu.getPerms());
-//            }
-//        }else{
-//            permsList = sysUserDao.queryAllPerms(userId);
-//        }
-        permsList = sysUserDao.queryAllPerms(userId);
+        if(userId == GlobalContants.SUPER_ADMIN){
+            List<SysMenuEntity> menuList = sysMenuDao.selectList(null);
+            permsList = new ArrayList<>(menuList.size());
+            for(SysMenuEntity menu : menuList){
+                permsList.add(menu.getPerms());
+            }
+        }else{
+            permsList = sysUserDao.queryAllPerms(userId);
+        }
         //用户权限列表
         Set<String> permsSet = new HashSet<>();
         for(String perms : permsList){
@@ -50,12 +53,12 @@ public class ShiroServiceImpl implements ShiroService {
     }
 
     @Override
-    public TSysUserTokenEntity queryByToken(String token) {
+    public SysUserTokenEntity queryByToken(String token) {
         return sysUserTokenDao.queryByToken(token);
     }
 
     @Override
-    public TSysUserEntity queryUser(Long userId) {
+    public SysUserEntity queryUser(Long userId) {
         return sysUserDao.selectById(userId);
     }
 }
