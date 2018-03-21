@@ -15,6 +15,8 @@ import com.movie.modules.sys.service.SysUserRoleService;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +45,9 @@ import com.movie.common.utils.R;
 @RestController
 @RequestMapping("sys/user")
 public class SysUserController extends BaseController{
+
+    private static final Logger logger = LoggerFactory.getLogger(SysUserController.class);
+
     @Autowired
     private SysUserService sysUserService;
 
@@ -69,6 +74,7 @@ public class SysUserController extends BaseController{
      */
     @GetMapping("/info")
     public R info(){
+        logger.info("获取用户信息");
         return R.ok().put("user", getUser());
     }
 

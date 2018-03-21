@@ -8,6 +8,8 @@ import com.movie.modules.sys.service.SysUserService;
 import com.movie.modules.sys.service.SysUserTokenService;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +33,9 @@ import java.util.Map;
  */
 @RestController
 public class SysLoginController extends BaseController {
+
+	private static final Logger logger = LoggerFactory.getLogger(SysLoginController.class);
+
 	@Autowired
 	private SysUserService sysUserService;
 	@Autowired
@@ -41,6 +46,8 @@ public class SysLoginController extends BaseController {
 	 */
 	@PostMapping("/sys/login")
 	public Map<String, Object> login(@RequestBody SysLoginForm form)throws IOException {
+
+		logger.info("登录请求参数：username：" + form.getUsername() + "^_^ password:" + form.getPassword());
 
 		//用户信息
 		SysUserEntity user = sysUserService.queryByUserName(form.getUsername());

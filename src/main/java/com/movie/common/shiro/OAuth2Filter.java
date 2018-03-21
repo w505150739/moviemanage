@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.movie.common.base.ResultData;
 import com.movie.common.utils.GlobalContants;
 import com.movie.common.utils.HttpContextUtils;
+import com.movie.common.utils.R;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -51,7 +52,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
             httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
             httpResponse.setHeader("Access-Control-Allow-Origin", HttpContextUtils.getOrigin());
 
-            String json = JSONObject.toJSONString(new ResultData(GlobalContants.TOKEN_FAIL,"invalid token"));
+            String json = JSONObject.toJSONString(R.error(GlobalContants.SC_UNAUTHORIZED, "invalid token"));
             httpResponse.getWriter().print(json);
 
             return false;
@@ -69,7 +70,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
         try {
             //处理登录失败的异常
             Throwable throwable = e.getCause() == null ? e : e.getCause();
-            String json = JSONObject.toJSONString(new ResultData(GlobalContants.TOKEN_FAIL,throwable.getMessage()));
+            String json = JSONObject.toJSONString(R.error(GlobalContants.SC_UNAUTHORIZED,throwable.getMessage()));
             httpResponse.getWriter().print(json);
         } catch (IOException e1) {
 
