@@ -1,8 +1,10 @@
-package com.movie.modules.sys.controller;
+package com.movie.modules.member.controller;
 
 import java.util.Arrays;
 import java.util.Map;
 
+import com.movie.modules.member.entity.MemberEntity;
+import com.movie.modules.member.service.MemberService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,36 +12,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.movie.common.base.BaseController;
-
-import com.movie.modules.sys.entity.SysLogEntity;
-import com.movie.modules.sys.service.SysLogService;
 import com.movie.common.utils.PageUtils;
 import com.movie.common.utils.R;
 
 
 
 /**
- * 系统日志
+ * 
  *
  * @author liuyuzhu
  * @email liuyuzhu.1314@gmail.com
- * @date 2018-03-21 00:13:28
+ * @date 2018-03-24 18:52:11
  */
 @RestController
-@RequestMapping("sys/log")
-public class SysLogController extends BaseController{
+@RequestMapping("sys/member")
+public class MemberController {
     @Autowired
-    private SysLogService sysLogService;
+    private MemberService memberService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("sys:log:list")
+    @RequiresPermissions("sys:member:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = sysLogService.queryPage(params);
+        PageUtils page = memberService.queryPage(params);
 
         return R.ok().put("page", page);
     }
@@ -49,20 +46,22 @@ public class SysLogController extends BaseController{
      * 信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("sys:log:info")
+    @RequiresPermissions("sys:member:info")
     public R info(@PathVariable("id") Long id){
-			SysLogEntity sysLog = sysLogService.selectById(id);
 
-        return R.ok().put("sysLog", sysLog);
+        MemberEntity member = memberService.selectById(id);
+
+        return R.ok().put("member", member);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("sys:log:save")
-    public R save(@RequestBody SysLogEntity sysLog){
-			sysLogService.insert(sysLog);
+    @RequiresPermissions("sys:member:save")
+    public R save(@RequestBody MemberEntity member){
+
+        memberService.insert(member);
 
         return R.ok();
     }
@@ -71,9 +70,9 @@ public class SysLogController extends BaseController{
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("sys:log:update")
-    public R update(@RequestBody SysLogEntity sysLog){
-			sysLogService.updateById(sysLog);
+    @RequiresPermissions("sys:member:update")
+    public R update(@RequestBody MemberEntity member){
+			memberService.updateById(member);
 
         return R.ok();
     }
@@ -82,9 +81,9 @@ public class SysLogController extends BaseController{
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("sys:log:delete")
+    @RequiresPermissions("sys:member:delete")
     public R delete(@RequestBody Long[] ids){
-			sysLogService.deleteBatchIds(Arrays.asList(ids));
+			memberService.deleteBatchIds(Arrays.asList(ids));
 
         return R.ok();
     }
