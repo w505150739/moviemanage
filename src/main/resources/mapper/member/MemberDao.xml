@@ -18,6 +18,8 @@
         <result property="photo" column="photo"/>
         <result property="email" column="email"/>
         <result property="userName" column="user_name"/>
+        <result property="status" column="status"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
 
 

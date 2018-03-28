@@ -68,6 +68,10 @@ public class MemberEntity implements Serializable {
 
 	private String userName;
 
+	private Integer status;
+
+	private Timestamp updateTime;
+
 	/**
 	 * 设置：
 	 */
@@ -215,5 +219,21 @@ public class MemberEntity implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
 	}
 }
