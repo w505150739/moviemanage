@@ -28,7 +28,7 @@ public class JwtUtils {
     /**
      * 生成jwt token
      */
-    public String generateToken(long userId,Long roleId) {
+    public String generateToken(long userId) {
         Date nowDate = new Date();
         //过期时间
         Date expireDate = new Date(nowDate.getTime() + expire * 1000);
@@ -36,7 +36,6 @@ public class JwtUtils {
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setSubject(userId+"")
-                .setSubject(roleId + "")
                 .setIssuedAt(nowDate)
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, secret)
