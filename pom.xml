@@ -37,6 +37,7 @@
 		<kaptcha.version>0.0.9</kaptcha.version>
 		<joda.time.version>2.9.9</joda.time.version>
         <fastjson.version>1.2.45</fastjson.version>
+        <json.version>20160810</json.version>
 		<!-- lombok 插件 -->
 		<lombok.version>1.16.18</lombok.version>
 	</properties>
@@ -139,6 +140,13 @@
             <artifactId>jjwt</artifactId>
             <version>${jwt.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.github.axet</groupId>
             <artifactId>kaptcha</artifactId>
