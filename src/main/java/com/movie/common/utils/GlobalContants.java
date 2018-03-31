@@ -6,6 +6,8 @@ public class GlobalContants {
     /** 超级管理员ID */
     public static final int SUPER_ADMIN = 1;
 
+    public static final int EXPIRETIME = 1000 * 10 * 60;
+
     public static final int SC_CONTINUE = 100;
     public static final int SC_SWITCHING_PROTOCOLS = 101;
     public static final int SC_PROCESSING = 102;

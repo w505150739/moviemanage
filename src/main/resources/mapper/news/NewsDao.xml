@@ -15,5 +15,8 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
+    <update id="updateContent" parameterType="java.util.Map">
+        update t_b_news t set t.content = #{content} where t.id = #{id}
+    </update>
 
 </mapper>

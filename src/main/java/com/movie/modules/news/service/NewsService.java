@@ -16,5 +16,6 @@ import java.util.Map;
 public interface NewsService extends IService<NewsEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+    int updateContent(Map<String,Object> params);
 }
 

@@ -25,4 +25,6 @@ public class DeployUtil {
 
     private String videobucket;
 
+    private String ossflag;
+
 }

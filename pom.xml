@@ -18,6 +18,20 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+    <repositories>
+        <repository>
+            <id>localRepository</id>
+            <name>local Repository</name>
+            <url>http://193.112.67.154:8888/repository/localRepository/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -40,7 +54,10 @@
         <json.version>20160810</json.version>
 		<!-- lombok 插件 -->
 		<lombok.version>1.16.18</lombok.version>
-	</properties>
+
+        <srtp.version>1.0</srtp.version>
+        <aliyun.version>1.2.3</aliyun.version>
+    </properties>
 
 	<dependencies>
         <dependency>
@@ -169,6 +186,27 @@
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
+        <dependency>
+            <groupId>srtpclient</groupId>
+            <artifactId>srtpclient</artifactId>
+            <version>${srtp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.6.3.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>tika</groupId>
+            <artifactId>tika</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.aliyun.openservices/aliyun-openservices -->
+        <dependency>
+            <groupId>com.aliyun.openservices</groupId>
+            <artifactId>aliyun-openservices</artifactId>
+            <version>${aliyun.version}</version>
+        </dependency>
         <!-- 热部署模块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

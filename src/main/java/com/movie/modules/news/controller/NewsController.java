@@ -1,5 +1,6 @@
 package com.movie.modules.news.controller;
 
+import com.movie.common.base.BaseController;
 import com.movie.common.utils.PageUtils;
 import com.movie.common.utils.R;
 import com.movie.modules.news.entity.NewsEntity;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -26,7 +29,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("sys/news")
-public class NewsController {
+public class NewsController extends BaseController{
     @Autowired
     private NewsService newsService;
 
@@ -59,9 +62,9 @@ public class NewsController {
     @RequestMapping("/save")
     @RequiresPermissions("sys:news:save")
     public R save(@RequestBody NewsEntity news){
-			newsService.insert(news);
 
-        return R.ok();
+		newsService.insert(news);
+        return R.ok().put("id",news.getId());
     }
 
     /**
@@ -72,6 +75,18 @@ public class NewsController {
     public R update(@RequestBody NewsEntity news){
 			newsService.updateById(news);
 
+        return R.ok();
+    }
+
+    /**
+     * 更新内容字段
+     * @param request
+     * @return
+     */
+    @RequestMapping("/updateContent")
+    public R updateContent(HttpServletRequest request){
+        Map<String,Object> params = this.getAllParams(request);
+        newsService.updateContent(params);
         return R.ok();
     }
 

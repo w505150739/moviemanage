@@ -42,12 +42,12 @@ public final class ConfigManager {
 		this.rootPath = rootPath;
 		this.contextPath = contextPath;
 		
-		if ( contextPath.length() > 0 ) {
+		/*if ( contextPath.length() > 0 ) {
 			this.originalPath = this.rootPath + uri.substring( contextPath.length() );
 		} else {
 			this.originalPath = this.rootPath + uri;
-		}
-		
+		}*/
+		this.originalPath = "src/main/resources/config/config.json";
 		this.initEnv();
 		
 	}
@@ -155,7 +155,13 @@ public final class ConfigManager {
 		if ( !file.isAbsolute() ) {
 			file = new File( file.getAbsolutePath() );
 		}
-		
+		//判断是否为本地环境，如果为本地环境，则需要更换json文件的读取路径
+		if( file.toString().contains(":\\") ){
+			file = new File("src/main/resources/config/config.json");
+			if ( !file.isAbsolute() ) {
+				file = new File( file.getAbsolutePath() );
+			}
+		}
 		this.parentPath = file.getParent();
 		
 		String configContent = this.readFile( this.getConfigPath() );
@@ -170,8 +176,7 @@ public final class ConfigManager {
 	}
 	
 	private String getConfigPath () {
-		//return this.parentPath + File.separator + ConfigManager.configFileName;
-		return this.rootPath + File.separator + "config" + File.separator + ConfigManager.configFileName;
+		return this.parentPath + File.separator + ConfigManager.configFileName;
 	}
 
 	private String[] getArray ( String key ) {
