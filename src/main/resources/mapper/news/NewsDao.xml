@@ -19,4 +19,36 @@
         update t_b_news t set t.content = #{content} where t.id = #{id}
     </update>
 
+    <select id="queryList" resultType="com.movie.modules.news.entity.NewsEntity">
+        select * from t_b_news
+        <where>
+            <if test="title != null and title.trim() != '' ">
+                and `title` like concat('%',#{title},'%')
+            </if>
+            <if test="status != null and status != ''">
+                and `status` = #{status}
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from t_b_news
+        <where>
+            <if test="title != null and title.trim() != '' ">
+                and `title` like concat('%',#{title},'%')
+            </if>
+            <if test="status != null">
+                and `status` = #{status}
+            </if>
+        </where>
+    </select>
+
 </mapper>

@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.movie.common.config.DeployUtil;
 import com.movie.common.utils.oss.OssUtils;
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
@@ -22,13 +23,14 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class BinaryUploader {
 
 	public static final State save(HttpServletRequest request,
-			Map<String, Object> conf) {
+			Map<String, Object> conf,DeployUtil deployUtil) {
 		/*FileItemStream fileStream = null;
 		boolean isAjaxUpload = request.getHeader( "X_Requested_With" ) != null;*/
 
@@ -88,13 +90,13 @@ public class BinaryUploader {
 			is.close();*/
 
 			State storageState = new BaseState();
-			OssUtils.getOssService("srtp");
-			String uuid = OssUtils.sendFileToAliyun(is,"imgtest",suffix);
+			OssUtils.getOssService(deployUtil.getOssflag());
+			String uuid = OssUtils.sendFileToAliyun(is,deployUtil.getImgbucket(),suffix);
 
 			if (StringUtils.isNotBlank(uuid)) {
 				storageState.putInfo("state","SUCCESS");
 				storageState.putInfo("size",fileSize);
-				storageState.putInfo("url", "http://localhost:8080/moviemanage/viewImage?uuid="+uuid);
+				storageState.putInfo("url", deployUtil.getViewurl() + "?uuid=" + uuid);
 				storageState.putInfo("type", suffix);
 				storageState.putInfo("title",originFileName);
 				storageState.putInfo("original", originFileName + suffix);

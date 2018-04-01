@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.movie.modules.news.entity.NewsEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,4 +18,8 @@ import java.util.Map;
 public interface NewsDao extends BaseMapper<NewsEntity> {
 
     int updateContent(Map<String,Object> params);
+
+    List<NewsEntity> queryList(Map<String, Object> map);
+
+    int queryTotal(Map<String, Object> map);
 }

@@ -2,6 +2,7 @@ package com.movie.modules.news.controller;
 
 import com.movie.common.base.BaseController;
 import com.movie.common.utils.PageUtils;
+import com.movie.common.utils.Query;
 import com.movie.common.utils.R;
 import com.movie.modules.news.entity.NewsEntity;
 import com.movie.modules.news.service.NewsService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -39,9 +41,14 @@ public class NewsController extends BaseController{
     @RequestMapping("/list")
     @RequiresPermissions("sys:news:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = newsService.queryPage(params);
 
-        return R.ok().put("page", page);
+        Query query = new Query(params);
+        List<NewsEntity> userList = newsService.queryList(query);
+        int total = newsService.queryTotal(query);
+
+        PageUtils pageUtil = new PageUtils(userList, total, query.getLimit(), query.getCurrPage());
+
+        return R.ok().put("page", pageUtil);
     }
 
 

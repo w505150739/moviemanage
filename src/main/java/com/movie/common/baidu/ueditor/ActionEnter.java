@@ -9,6 +9,7 @@ import com.movie.common.baidu.ueditor.define.*;
 import com.movie.common.baidu.ueditor.hunter.FileManager;
 import com.movie.common.baidu.ueditor.hunter.ImageHunter;
 import com.movie.common.baidu.ueditor.upload.Uploader;
+import com.movie.common.config.DeployUtil;
 
 public class ActionEnter {
 	
@@ -21,12 +22,15 @@ public class ActionEnter {
 	
 	private ConfigManager configManager = null;
 
-	public ActionEnter ( HttpServletRequest request, String rootPath ) {
+	private DeployUtil deployUtil = null;
+
+	public ActionEnter ( HttpServletRequest request, String rootPath, DeployUtil deployUtil ) {
 		
 		this.request = request;
 		this.rootPath = rootPath;
 		this.actionType = request.getParameter( "action" );
 		this.contextPath = request.getContextPath();
+		this.deployUtil = deployUtil;
 		this.configManager = ConfigManager.getInstance( this.rootPath, this.contextPath, request.getRequestURI() );
 		
 	}
@@ -75,7 +79,7 @@ public class ActionEnter {
 			case ActionMap.UPLOAD_VIDEO:
 			case ActionMap.UPLOAD_FILE:
 				conf = this.configManager.getConfig( actionCode );
-				state = new Uploader( request, conf ).doExec();
+				state = new Uploader( request, conf, deployUtil ).doExec();
 				break;
 				
 			case ActionMap.CATCH_IMAGE:

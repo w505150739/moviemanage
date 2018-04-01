@@ -33,6 +33,6 @@ public class UploadController extends BaseController{
         request.setCharacterEncoding("utf-8");
         String rootPath = request.getRealPath("/");
         logger.info("请求上传文件：" + rootPath);
-        return new ActionEnter( request, rootPath).exec();
+        return new ActionEnter( request, rootPath,deployUtil).exec();
     }
 }

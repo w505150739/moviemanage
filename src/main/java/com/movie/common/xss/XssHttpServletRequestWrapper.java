@@ -131,7 +131,8 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     }
 
     private String xssEncode(String input) {
-        return htmlFilter.filter(input);
+        return input;
+//        return htmlFilter.filter(input);
     }
 
     /**

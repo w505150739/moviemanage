@@ -34,6 +34,7 @@ public class ImgViewServlet extends HttpServlet {
 //            String fileName = request.getParameter("fileName");
 //            String suffix = request.getParameter("suffix");//文件后缀格式
 //            String fileType = request.getParameter("fileType");//文件类型
+            OssUtils.getOssService("srtp");
             String uuid = request.getParameter("uuid");
             String url = OssUtils.getPrivateUrlEndPoint("","imgtest",uuid);
             String filePath = TMEP_DIR + uuid + ".jpg";
