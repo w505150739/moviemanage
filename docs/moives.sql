@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2018-03-29 03:48:09
+Date: 2018-04-03 00:33:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -50,19 +50,27 @@ DROP TABLE IF EXISTS `t_b_news`;
 CREATE TABLE `t_b_news` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL COMMENT '资讯标题',
-  `type` tinyint(2) DEFAULT NULL COMMENT '资讯类型',
+  `type` tinyint(2) DEFAULT NULL COMMENT '资讯类型 1 广告 2 新闻',
   `status` tinyint(2) DEFAULT NULL COMMENT '状态 1、可用 2、已删除',
   `show_flag` tinyint(2) DEFAULT NULL COMMENT '是否显示 1 显示 0 不显示',
   `content` varchar(5000) DEFAULT NULL COMMENT '资讯内容',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='新闻资讯表';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='新闻资讯表';
 
 -- ----------------------------
 -- Records of t_b_news
 -- ----------------------------
-INSERT INTO `t_b_news` VALUES ('1', 'qaz', '1', '1', '1', 'sdfsdf', null, null);
+INSERT INTO `t_b_news` VALUES ('1', '扥嗲发动', '2', '1', '1', '<img src=\"http://localhost:8080/moviemanage/viewImage?uuid=b7f0a7e9ff584b7881fe99a347178f18\" alt=\"6712.png\" />赛菲尔正很刚', '2018-04-01 01:37:49', '2018-04-01 01:37:50');
+INSERT INTO `t_b_news` VALUES ('2', '测试标题', '1', '1', '1', '<img src=\"http://localhost:8080/moviemanage/viewImage?uuid=1e8697c88046461c8436fa4a97e86453\" alt=\"6712.png\" />as找矿搜寻的，苗冰嗲发动送扥额外', '2018-04-01 11:18:51', '2018-04-01 11:18:52');
+INSERT INTO `t_b_news` VALUES ('7', '小翠害人', '1', '2', '0', '<p>新东方东方鱼骨图月<img src=\"http://localhost:8080/moviemanage/viewImage?uuid=edc8b3bf15934377ab0a7f9cf1939900\" alt=\"6712.png\"/>岑等分点等额酸味儿撒safdsadasasdsad</p><ul class=\" list-paddingleft-2\" style=\"list-style-type: disc;\"><li><p>塞阀赛奥法</p></li><li><p>赛奥法打死</p></li><li><p>啊赛佛dsa东安f奥赛f</p></li><li><p>啊赛佛撒扥</p></li><li><p><br/></p></li></ul>', '2018-04-01 16:13:28', '2018-04-02 01:10:49');
+INSERT INTO `t_b_news` VALUES ('9', 're团圆屯', '1', '1', '0', '塞阀赛风赛风分仓费当个人扥h<img src=\"http://localhost:8080/moviemanage/viewImage?uuid=8266229e5a1c4dff98df87f035fc73d1\" alt=\"6712.png\" />仓泵费等', '2018-04-01 16:29:13', '2018-04-01 16:29:14');
+INSERT INTO `t_b_news` VALUES ('10', '东few费等软腭', '1', '1', '0', '扥僧人的阿塞阀东方<strong>阿塞阀塞阀三</strong><strong><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=75c32d692a184cbd9829feb41a07f273\" alt=\"6712.png\" /></strong><strong>赛风德森</strong>', '2018-04-01 17:16:27', '2018-04-01 17:16:28');
+INSERT INTO `t_b_news` VALUES ('11', '测试修改能', '1', '1', '0', '撒扥东啊发<strong>撒扥东啊发</strong><strong>赛奥法sad东安抚</strong><strong>sdaf东安抚</strong><strong>asdf&amp;nbsp;</strong><strong><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=7009b35807274b0b8db178833144d171\" alt=\"6712.png\" /></strong><strong>狂啊赛佛领囧</strong>', '2018-04-01 17:28:04', '2018-04-01 17:28:06');
+INSERT INTO `t_b_news` VALUES ('12', '测试修改成功否', '1', '1', '0', '<p>&nbsp; &nbsp;萨芬东非<strong>赛发动发</strong><strong>阿赛发动安抚</strong><strong>东安抚东安抚</strong><strong>洗澡负债森</strong><strong>撒扥东非</strong><strong>在线崔满您看好</strong><strong>，口橡胶岑拽进动画</strong><strong>sad灵泛灵动案件&amp;nbsp;</strong>\n\n\n &nbsp; &nbsp;<strong>塞阀撒扥</strong> &amp;nbsp;<strong>我的红色字体</strong>\n\n\n &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>上一上车</strong>\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>5端月肉盾</strong>\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>刚均衡</strong>\n &nbsp; &nbsp;</p><p><span style=\"color: rgb(255, 0, 0);\">扥根等</span></p><p>扥个放灯<span style=\"color: rgb(255, 0, 0);\">扥个df放灯fd</span></p><p>dfs该放松g&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p><p><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=21e848e979074a97aa9396362ea48932\" title=\"test\" alt=\"test.jpg\"/></p>', '2018-04-01 17:35:07', '2018-04-02 01:06:39');
+INSERT INTO `t_b_news` VALUES ('13', '测试销毁', '2', '1', '1', '思想扥东方', '2018-04-01 17:40:21', '2018-04-01 17:40:22');
+INSERT INTO `t_b_news` VALUES ('14', '测试销毁', '2', '1', '0', '撒扥领撒扥领翻看领', '2018-04-01 17:42:08', '2018-04-01 17:42:10');
 
 -- ----------------------------
 -- Table structure for t_b_project
@@ -84,6 +92,10 @@ CREATE TABLE `t_b_project` (
   `project_status` tinyint(2) DEFAULT NULL COMMENT '项目状态 1 即将上线 2 正在募集 3 募集完成',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `status` tinyint(2) DEFAULT '1' COMMENT '状态 1、可用 2、已删除',
+  `examine_status` tinyint(2) DEFAULT NULL COMMENT '审核状态 1、新建 2、已提交未审核 3 驳回 4 审核通过',
+  `publish_status` tinyint(2) DEFAULT NULL COMMENT '是否发布 1 发布 0 未发布',
+  `project_des` text COMMENT '项目介绍',
+  `remark` varchar(500) DEFAULT NULL COMMENT '审核意见',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目表';
 
@@ -144,7 +156,7 @@ CREATE TABLE `t_sys_menu` (
   `icon` varchar(50) DEFAULT NULL COMMENT '菜单图标',
   `order_num` int(11) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
 
 -- ----------------------------
 -- Records of t_sys_menu
@@ -167,6 +179,7 @@ INSERT INTO `t_sys_menu` VALUES ('25', '4', '修改', null, 'sys:menu:update,sys
 INSERT INTO `t_sys_menu` VALUES ('26', '4', '删除', null, 'sys:menu:delete', '2', null, '0');
 INSERT INTO `t_sys_menu` VALUES ('29', '1', '系统日志', 'modules/sys/log.html', 'sys:log:list', '1', 'fa fa-file-text-o', '7');
 INSERT INTO `t_sys_menu` VALUES ('30', '1', '文件上传', 'modules/oss/oss.html', 'sys:oss:all', '1', 'fa fa-file-image-o', '6');
+INSERT INTO `t_sys_menu` VALUES ('31', '0', '项目管理', '', null, '0', 'fa fa-film', '3');
 INSERT INTO `t_sys_menu` VALUES ('40', '0', '会员管理', '', null, '0', 'fa fa-user', '1');
 INSERT INTO `t_sys_menu` VALUES ('41', '40', '会员列表', 'modules/member/member.html', null, '1', 'fa fa-user', '6');
 INSERT INTO `t_sys_menu` VALUES ('42', '41', '查看', null, 'sys:member:list,sys:member:info', '2', null, '6');
@@ -179,6 +192,14 @@ INSERT INTO `t_sys_menu` VALUES ('48', '47', '查看', null, 'sys:news:list,sys:
 INSERT INTO `t_sys_menu` VALUES ('49', '47', '新增', null, 'sys:news:save', '2', null, '6');
 INSERT INTO `t_sys_menu` VALUES ('50', '47', '修改', null, 'sys:news:update', '2', null, '6');
 INSERT INTO `t_sys_menu` VALUES ('51', '47', '删除', null, 'sys:news:delete', '2', null, '6');
+INSERT INTO `t_sys_menu` VALUES ('52', '31', '项目管理', 'modules/project/project.html', null, '1', 'fa fa-film', '6');
+INSERT INTO `t_sys_menu` VALUES ('53', '52', '查看', null, 'project:project:list,project:project:info', '2', null, '6');
+INSERT INTO `t_sys_menu` VALUES ('54', '52', '新增', null, 'project:project:save', '2', null, '6');
+INSERT INTO `t_sys_menu` VALUES ('55', '52', '修改', null, 'project:project:update', '2', null, '6');
+INSERT INTO `t_sys_menu` VALUES ('56', '52', '删除', null, 'project:project:delete', '2', null, '6');
+INSERT INTO `t_sys_menu` VALUES ('57', '52', '提审', null, 'project:project:approval', '2', null, '0');
+INSERT INTO `t_sys_menu` VALUES ('58', '52', '审核', null, 'project:project:examine', '2', null, '0');
+INSERT INTO `t_sys_menu` VALUES ('59', '52', '发布', null, 'project:project:publish', '2', null, '0');
 
 -- ----------------------------
 -- Table structure for t_sys_role
@@ -191,11 +212,13 @@ CREATE TABLE `t_sys_role` (
   `create_user_id` bigint(20) DEFAULT NULL COMMENT '创建者ID',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='角色';
 
 -- ----------------------------
 -- Records of t_sys_role
 -- ----------------------------
+INSERT INTO `t_sys_role` VALUES ('1', '项目审核员', '审核项目专有角色', '1', '2018-04-03 00:26:20');
+INSERT INTO `t_sys_role` VALUES ('2', '管理员', '管理员', '1', '2018-04-03 00:30:28');
 
 -- ----------------------------
 -- Table structure for t_sys_role_menu
@@ -206,11 +229,47 @@ CREATE TABLE `t_sys_role_menu` (
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
 
 -- ----------------------------
 -- Records of t_sys_role_menu
 -- ----------------------------
+INSERT INTO `t_sys_role_menu` VALUES ('1', '1', '31');
+INSERT INTO `t_sys_role_menu` VALUES ('2', '1', '52');
+INSERT INTO `t_sys_role_menu` VALUES ('3', '1', '53');
+INSERT INTO `t_sys_role_menu` VALUES ('4', '1', '58');
+INSERT INTO `t_sys_role_menu` VALUES ('5', '2', '1');
+INSERT INTO `t_sys_role_menu` VALUES ('6', '2', '2');
+INSERT INTO `t_sys_role_menu` VALUES ('7', '2', '15');
+INSERT INTO `t_sys_role_menu` VALUES ('8', '2', '16');
+INSERT INTO `t_sys_role_menu` VALUES ('9', '2', '17');
+INSERT INTO `t_sys_role_menu` VALUES ('10', '2', '18');
+INSERT INTO `t_sys_role_menu` VALUES ('11', '2', '3');
+INSERT INTO `t_sys_role_menu` VALUES ('12', '2', '19');
+INSERT INTO `t_sys_role_menu` VALUES ('13', '2', '20');
+INSERT INTO `t_sys_role_menu` VALUES ('14', '2', '21');
+INSERT INTO `t_sys_role_menu` VALUES ('15', '2', '22');
+INSERT INTO `t_sys_role_menu` VALUES ('16', '2', '31');
+INSERT INTO `t_sys_role_menu` VALUES ('17', '2', '52');
+INSERT INTO `t_sys_role_menu` VALUES ('18', '2', '53');
+INSERT INTO `t_sys_role_menu` VALUES ('19', '2', '54');
+INSERT INTO `t_sys_role_menu` VALUES ('20', '2', '55');
+INSERT INTO `t_sys_role_menu` VALUES ('21', '2', '56');
+INSERT INTO `t_sys_role_menu` VALUES ('22', '2', '57');
+INSERT INTO `t_sys_role_menu` VALUES ('23', '2', '58');
+INSERT INTO `t_sys_role_menu` VALUES ('24', '2', '59');
+INSERT INTO `t_sys_role_menu` VALUES ('25', '2', '40');
+INSERT INTO `t_sys_role_menu` VALUES ('26', '2', '41');
+INSERT INTO `t_sys_role_menu` VALUES ('27', '2', '42');
+INSERT INTO `t_sys_role_menu` VALUES ('28', '2', '43');
+INSERT INTO `t_sys_role_menu` VALUES ('29', '2', '44');
+INSERT INTO `t_sys_role_menu` VALUES ('30', '2', '45');
+INSERT INTO `t_sys_role_menu` VALUES ('31', '2', '46');
+INSERT INTO `t_sys_role_menu` VALUES ('32', '2', '47');
+INSERT INTO `t_sys_role_menu` VALUES ('33', '2', '48');
+INSERT INTO `t_sys_role_menu` VALUES ('34', '2', '49');
+INSERT INTO `t_sys_role_menu` VALUES ('35', '2', '50');
+INSERT INTO `t_sys_role_menu` VALUES ('36', '2', '51');
 
 -- ----------------------------
 -- Table structure for t_sys_user
@@ -228,12 +287,14 @@ CREATE TABLE `t_sys_user` (
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统用户';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统用户';
 
 -- ----------------------------
 -- Records of t_sys_user
 -- ----------------------------
 INSERT INTO `t_sys_user` VALUES ('1', 'admin', '9ec9750e709431dad22365cabc5c625482e574c74adaebba7dd02f1129e4ce1d', 'YzcmCZNvbXocrsz9dm8e', 'root@renren.io', '13612345678', '1', '1', '2016-11-11 11:11:11');
+INSERT INTO `t_sys_user` VALUES ('2', 'liuyuzhu', 'b5f936619f46ac44a63e82e14c8911e6d150e1e9b218a774cd2134b6a4a14980', 'MWjcJMWL5tUmQFOGaquY', 'liuyuzhu@126.com', '15888888888', '1', '1', '2018-04-03 00:26:43');
+INSERT INTO `t_sys_user` VALUES ('3', 'movie', '31fc99389a9725abbba22cb0cc4ccd23027a33227bbca2ad33538c69215fa4fd', 'dwxeZIvgBATW9x52DFrW', 'movie@126.com', '18818544574', '1', '1', '2018-04-03 00:29:47');
 
 -- ----------------------------
 -- Table structure for t_sys_user_role
@@ -244,11 +305,13 @@ CREATE TABLE `t_sys_user_role` (
   `user_id` bigint(20) DEFAULT NULL COMMENT '用户ID',
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户与角色对应关系';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户与角色对应关系';
 
 -- ----------------------------
 -- Records of t_sys_user_role
 -- ----------------------------
+INSERT INTO `t_sys_user_role` VALUES ('1', '2', '1');
+INSERT INTO `t_sys_user_role` VALUES ('2', '3', '2');
 
 -- ----------------------------
 -- Table structure for t_sys_user_token
@@ -266,4 +329,6 @@ CREATE TABLE `t_sys_user_token` (
 -- ----------------------------
 -- Records of t_sys_user_token
 -- ----------------------------
-INSERT INTO `t_sys_user_token` VALUES ('1', '3fc1994e6b1914930f60e5eb88398045', '2018-03-29 04:05:34', '2018-03-29 03:35:34');
+INSERT INTO `t_sys_user_token` VALUES ('1', 'a645f94a3673a3705c664e2633bb6e72', '2018-04-03 00:57:23', '2018-04-03 00:27:23');
+INSERT INTO `t_sys_user_token` VALUES ('2', '2d520fc1142a94a47438d0e75558e36f', '2018-04-03 00:56:55', '2018-04-03 00:26:55');
+INSERT INTO `t_sys_user_token` VALUES ('3', 'b0ab0f033e4248cf20cc8302c75a611a', '2018-04-03 01:00:48', '2018-04-03 00:30:48');
