@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2018-04-03 00:33:45
+Date: 2018-04-04 00:45:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,7 +77,7 @@ INSERT INTO `t_b_news` VALUES ('14', '测试销毁', '2', '1', '0', '撒扥领�
 -- ----------------------------
 DROP TABLE IF EXISTS `t_b_project`;
 CREATE TABLE `t_b_project` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(200) DEFAULT NULL COMMENT '项目名称',
   `movie_id` bigint(20) DEFAULT NULL COMMENT '影片id',
   `project_cost` decimal(10,2) DEFAULT NULL COMMENT '项目成本',
@@ -87,7 +87,7 @@ CREATE TABLE `t_b_project` (
   `end_time` timestamp NULL DEFAULT NULL COMMENT '投资结束时间',
   `project_label` varchar(255) DEFAULT NULL COMMENT '项目标签 如 永久版权 永久福利等',
   `project_cover_charge` decimal(10,2) DEFAULT NULL COMMENT '项目服务费',
-  `create_time` timestamp NULL DEFAULT NULL COMMENT '创建时间',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `project_type` tinyint(2) DEFAULT NULL COMMENT '项目类型 1 网络电影 2 院线电影',
   `project_status` tinyint(2) DEFAULT NULL COMMENT '项目状态 1 即将上线 2 正在募集 3 募集完成',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -97,11 +97,15 @@ CREATE TABLE `t_b_project` (
   `project_des` text COMMENT '项目介绍',
   `remark` varchar(500) DEFAULT NULL COMMENT '审核意见',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='项目表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='项目表';
 
 -- ----------------------------
 -- Records of t_b_project
 -- ----------------------------
+INSERT INTO `t_b_project` VALUES ('1', '测试项目', null, '1200.00', '自己', '1470.00', null, null, '永久福利', '5000.00', null, '1', '1', null, '1', null, '1', null, null);
+INSERT INTO `t_b_project` VALUES ('2', '测试项目2', null, '6577.00', '我', '15985.00', null, null, '永久版权', '5000.00', '2018-04-04 00:23:52', '2', '2', null, '1', null, '0', null, null);
+INSERT INTO `t_b_project` VALUES ('3', '测试项目3', null, '11111.00', '蓝', '12122112.00', null, null, '哈哈哈', '158.00', '2018-04-04 00:27:07', '1', '3', null, '1', null, '1', null, null);
+INSERT INTO `t_b_project` VALUES ('4', '测试项目4', null, '58421.00', '哈哈', '14521.00', '2018-04-04 00:00:00', '2018-04-19 00:00:00', '阿龙定积分', '159852.00', '2018-04-04 00:36:15', '2', '2', null, '1', '1', '0', null, null);
 
 -- ----------------------------
 -- Table structure for t_sys_config
@@ -329,6 +333,6 @@ CREATE TABLE `t_sys_user_token` (
 -- ----------------------------
 -- Records of t_sys_user_token
 -- ----------------------------
-INSERT INTO `t_sys_user_token` VALUES ('1', 'a645f94a3673a3705c664e2633bb6e72', '2018-04-03 00:57:23', '2018-04-03 00:27:23');
+INSERT INTO `t_sys_user_token` VALUES ('1', '06da5adf1b1e68ac8510c9467796ce4f', '2018-04-04 00:47:53', '2018-04-04 00:17:53');
 INSERT INTO `t_sys_user_token` VALUES ('2', '2d520fc1142a94a47438d0e75558e36f', '2018-04-03 00:56:55', '2018-04-03 00:26:55');
 INSERT INTO `t_sys_user_token` VALUES ('3', 'b0ab0f033e4248cf20cc8302c75a611a', '2018-04-03 01:00:48', '2018-04-03 00:30:48');

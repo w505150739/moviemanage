@@ -60,7 +60,8 @@ public class ProjectController {
     @RequestMapping("/save")
     @RequiresPermissions("project:project:save")
     public R save(@RequestBody ProjectEntity project){
-			projectService.insert(project);
+		project.setExamineStatus(1);
+        projectService.insert(project);
 
         return R.ok();
     }
