@@ -26,14 +26,18 @@
         <result property="remark" column="remark"/>
     </resultMap>
 
+    <update id="updateContent" parameterType="java.util.Map">
+        update t_b_project t set t.project_des = #{content} where t.id = #{id}
+    </update>
+
     <select id="queryList" resultType="com.movie.modules.project.entity.ProjectEntity">
         select * from t_b_project
         <where>
-            <if test="title != null and title.trim() != '' ">
-                and `title` like concat('%',#{title},'%')
+            <if test="projectName != null and projectName.trim() != '' ">
+                and `project_name` like concat('%',#{projectName},'%')
             </if>
-            <if test="status != null and status != ''">
-                and `status` = #{status}
+            <if test="publishStatus != null and publishStatus != ''">
+                and `publish_status` = #{publishStatus}
             </if>
         </where>
         <choose>
@@ -49,13 +53,32 @@
     <select id="queryTotal" resultType="int">
         select count(*) from t_b_project
         <where>
-            <if test="title != null and title.trim() != '' ">
-                and `title` like concat('%',#{title},'%')
+            <if test="projectName != null and projectName.trim() != '' ">
+                and `project_name` like concat('%',#{projectName},'%')
             </if>
-            <if test="status != null">
-                and `status` = #{status}
+            <if test="publishStatus != null and publishStatus != ''">
+                and `publish_status` = #{publishStatus}
             </if>
         </where>
     </select>
+
+    <!-- 提审，审核 -->
+    <update id="approvalPro" parameterType="java.util.Map">
+        update t_b_project t set t.examine_status = #{examineStatus},t.remark = #{remark} where t.id = #{id}
+    </update>
+
+    <!-- 更新状态 -->
+    <update id="updateByMap" parameterType="java.util.Map">
+        update t_b_project t
+        <set>
+            <if test=" publish != null ">
+                t.publish_status = #{publish},
+            </if>
+            <if test=" projectStatus != null ">
+                t.project_status = #{projectStatus},
+            </if>
+        </set>
+        where t.id = #{id}
+    </update>
 
 </mapper>
