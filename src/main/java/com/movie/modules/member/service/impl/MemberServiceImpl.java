@@ -13,13 +13,18 @@ import com.movie.modules.member.service.MemberService;
 import com.movie.modules.web.form.WebLoginForm;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 
 @Service("memberService")
 public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> implements MemberService {
+
+    @Autowired
+    private MemberDao memberDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -54,6 +59,16 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> impl
         }
 
         return user.getId();
+    }
+
+    @Override
+    public List<MemberEntity> queryList(Map<String, Object> params) {
+        return this.memberDao.queryList(params);
+    }
+
+    @Override
+    public int queryTotal(Map<String, Object> map) {
+        return this.memberDao.queryTotal(map);
     }
 
 }

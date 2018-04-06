@@ -1,8 +1,8 @@
 package com.movie.modules.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
+import com.movie.common.utils.PageUtils;
+import com.movie.common.utils.Query;
+import com.movie.common.utils.R;
 import com.movie.modules.member.entity.MemberEntity;
 import com.movie.modules.member.service.MemberService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.movie.common.utils.PageUtils;
-import com.movie.common.utils.R;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -36,9 +38,15 @@ public class MemberController {
     @RequestMapping("/list")
     @RequiresPermissions("sys:member:list")
     public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = memberService.queryPage(params);
+        Query query = new Query(params);
 
-        return R.ok().put("page", page);
+        List<MemberEntity> proList = this.memberService.queryList(query);
+
+        int total = memberService.queryTotal(query);
+
+        PageUtils pageUtil = new PageUtils(proList, total, query.getLimit(), query.getCurrPage());
+
+        return R.ok().put("page", pageUtil);
     }
 
 

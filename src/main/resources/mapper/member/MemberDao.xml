@@ -22,5 +22,36 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
+    <select id="queryList" resultType="com.movie.modules.member.entity.MemberEntity">
+        select * from t_b_member
+        <where>
+            <if test="userName != null and userName.trim() != '' ">
+                and `user_name` like concat('%',#{userName},'%')
+            </if>
+            <if test="phone != null and phone != ''">
+                and `phone` = #{phone}
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from t_b_member
+        <where>
+            <if test="userName != null and userName.trim() != '' ">
+                and `user_name` like concat('%',#{userName},'%')
+            </if>
+            <if test="phone != null and phone != ''">
+                and `phone` = #{phone}
+            </if>
+        </where>
+    </select>
 
 </mapper>

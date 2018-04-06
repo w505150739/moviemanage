@@ -70,6 +70,7 @@ public class NewsController extends BaseController{
     @RequiresPermissions("sys:news:save")
     public R save(@RequestBody NewsEntity news){
 
+        news.setStatus(1);
 		newsService.insert(news);
         return R.ok().put("id",news.getId());
     }

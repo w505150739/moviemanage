@@ -6,7 +6,6 @@ server:
         min-spare-threads: 30
     port: 8080
     connection-timeout: 5000
-    context-path: /moviemanage
 
 spring:
     # 环境 dev|test|prod
@@ -70,3 +69,5 @@ movie:
         # token有效时长，7天，单位秒
         expire: 604800
         header: token
+    config:
+        path: lasspath:config/deploy.properties

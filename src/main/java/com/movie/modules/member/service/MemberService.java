@@ -5,6 +5,7 @@ import com.movie.common.utils.PageUtils;
 import com.movie.modules.member.entity.MemberEntity;
 import com.movie.modules.web.form.WebLoginForm;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,5 +32,17 @@ public interface MemberService extends IService<MemberEntity> {
      * @return 返回用户id
      */
     long login(WebLoginForm form);
+
+    /**
+     * 根据条件查询数据
+     * @param params
+     * @return
+     */
+    List<MemberEntity> queryList(Map<String, Object> params);
+
+    /**
+     * 查询总数
+     */
+    int queryTotal(Map<String, Object> map);
 }
 

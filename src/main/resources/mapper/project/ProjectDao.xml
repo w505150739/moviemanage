@@ -39,6 +39,9 @@
             <if test="publishStatus != null and publishStatus != ''">
                 and `publish_status` = #{publishStatus}
             </if>
+            <if test="examineStatus != null and examineStatus != ''">
+                and `examine_status` = #{examineStatus}
+            </if>
         </where>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
@@ -58,6 +61,9 @@
             </if>
             <if test="publishStatus != null and publishStatus != ''">
                 and `publish_status` = #{publishStatus}
+            </if>
+            <if test="examineStatus != null and examineStatus != ''">
+                and `examine_status` = #{examineStatus}
             </if>
         </where>
     </select>

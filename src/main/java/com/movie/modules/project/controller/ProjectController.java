@@ -53,6 +53,24 @@ public class ProjectController extends BaseController{
         return R.ok().put("page", pageUtil);
     }
 
+    /**
+     * 待审核列表
+     */
+    @RequestMapping("/approvallist")
+    @RequiresPermissions("project:project:approvallist")
+    public R approvallist(@RequestParam Map<String, Object> params){
+        params.put("examineStatus",2);
+        Query query = new Query(params);
+
+        List<ProjectEntity> proList = this.projectService.queryList(query);
+
+        int total = projectService.queryTotal(query);
+
+        PageUtils pageUtil = new PageUtils(proList, total, query.getLimit(), query.getCurrPage());
+
+        return R.ok().put("page", pageUtil);
+    }
+
 
     /**
      * 信息

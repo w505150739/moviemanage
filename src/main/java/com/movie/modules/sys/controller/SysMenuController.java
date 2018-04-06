@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.movie.common.annotation.SysLog;
 import com.movie.common.exception.GlobalException;
 import com.movie.common.utils.GlobalContants;
@@ -61,7 +62,7 @@ public class SysMenuController extends BaseController{
     @GetMapping("/list")
     @RequiresPermissions("sys:menu:list")
     public List<SysMenuEntity> list(){
-        List<SysMenuEntity> menuList = sysMenuService.selectList(null);
+        List<SysMenuEntity> menuList = sysMenuService.selectList(new EntityWrapper<SysMenuEntity>().eq("status",1));
         for(SysMenuEntity sysMenuEntity : menuList){
             SysMenuEntity parentMenuEntity = sysMenuService.selectById(sysMenuEntity.getParentId());
             if(parentMenuEntity != null){

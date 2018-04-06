@@ -11,8 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.movie.common.baidu.ueditor.define.ActionMap;
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ResourceUtils;
 
 /**
  * 配置管理器
@@ -20,6 +24,8 @@ import org.json.JSONObject;
  *
  */
 public final class ConfigManager {
+
+	private static final Logger logger = LoggerFactory.getLogger(ConfigManager.class);
 
 	private final String rootPath;
 	private final String originalPath;
@@ -46,8 +52,13 @@ public final class ConfigManager {
 			this.originalPath = this.rootPath + uri.substring( contextPath.length() );
 		} else {
 			this.originalPath = this.rootPath + uri;
-		}*/
-		this.originalPath = "src/main/resources/config/config.json";
+		}
+//		this.originalPath = "src/main/resources/config/config.json";
+		this.originalPath = "classpath:config/config.json";
+		logger.info("rootPath==========" + rootPath + "originalPath=========" + originalPath);
+		*/
+		this.originalPath = "config/config.json";
+
 		this.initEnv();
 		
 	}
@@ -64,6 +75,7 @@ public final class ConfigManager {
 		try {
 			return new ConfigManager(rootPath, contextPath, uri);
 		} catch ( Exception e ) {
+			e.printStackTrace();
 			return null;
 		}
 		
@@ -149,23 +161,25 @@ public final class ConfigManager {
 	}
 	
 	private void initEnv () throws FileNotFoundException, IOException {
-		
-		File file = new File( this.originalPath );
-		
+
+		/*File file = ResourceUtils.getFile(this.originalPath);
+		//File file = new File( this.originalPath );
+		logger.info("file parentPath============" + file.getParent());
 		if ( !file.isAbsolute() ) {
 			file = new File( file.getAbsolutePath() );
 		}
 		//判断是否为本地环境，如果为本地环境，则需要更换json文件的读取路径
 		if( file.toString().contains(":\\") ){
+			logger.info("判断是否为本地文件");
 			file = new File("src/main/resources/config/config.json");
 			if ( !file.isAbsolute() ) {
 				file = new File( file.getAbsolutePath() );
 			}
 		}
-		this.parentPath = file.getParent();
+		this.parentPath = file.getParent();*/
 		
-		String configContent = this.readFile( this.getConfigPath() );
-		
+//		String configContent = this.readFile( this.getConfigPath() );
+		String configContent = this.filter(IOUtils.toString(this.getClass().getClassLoader().getResourceAsStream("config/config.json")));
 		try{
 			JSONObject jsonConfig = new JSONObject( configContent );
 			this.jsonConfig = jsonConfig;
