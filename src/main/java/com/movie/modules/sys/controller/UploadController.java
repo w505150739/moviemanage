@@ -3,6 +3,7 @@ package com.movie.modules.sys.controller;
 import com.movie.common.baidu.ueditor.ActionEnter;
 import com.movie.common.base.BaseController;
 import com.movie.common.config.DeployUtil;
+import com.movie.common.utils.R;
 import com.movie.common.utils.oss.OssUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,5 +35,12 @@ public class UploadController extends BaseController{
         String rootPath = request.getRealPath("/");
         logger.info("请求上传文件：" + rootPath);
         return new ActionEnter( request, rootPath,deployUtil).exec();
+    }
+
+    @RequestMapping("/uploadfile")
+    public R uploadFile(HttpServletRequest request, HttpServletResponse response){
+        Map<String,Object> params = this.getAllParams(request);
+        logger.info(params.toString());
+        return R.ok();
     }
 }
