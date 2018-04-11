@@ -88,4 +88,28 @@ public class GlobalContants {
             return value;
         }
     }
+
+    /**
+     * 附件类型
+     */
+    public enum AttachType {
+        /**
+         * 新闻资讯
+         */
+        NEWS(1),
+        /**
+         * 项目
+         */
+        PROJECT(2);
+
+        private int value;
+
+        AttachType(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }
