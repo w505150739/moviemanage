@@ -10,10 +10,32 @@ Target Server Type    : MYSQL
 Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2018-04-04 00:45:27
+Date: 2018-04-12 02:42:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for t_b_attachs
+-- ----------------------------
+DROP TABLE IF EXISTS `t_b_attachs`;
+CREATE TABLE `t_b_attachs` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL COMMENT '文件名称',
+  `type` tinyint(2) DEFAULT NULL COMMENT '文件类型',
+  `status` tinyint(2) DEFAULT NULL COMMENT '状态 1、可用 2、已删除',
+  `file_size` bigint(20) DEFAULT NULL COMMENT '文件大小',
+  `suffix` varchar(5000) DEFAULT NULL COMMENT '文件后缀',
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `relation_id` bigint(20) DEFAULT NULL COMMENT '关联数据id',
+  `relation_type` tinyint(2) DEFAULT NULL COMMENT '关联类型 1、新闻资讯 2、项目',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='附件记录表';
+
+-- ----------------------------
+-- Records of t_b_attachs
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_b_member
@@ -57,7 +79,7 @@ CREATE TABLE `t_b_news` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='新闻资讯表';
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COMMENT='新闻资讯表';
 
 -- ----------------------------
 -- Records of t_b_news
@@ -70,7 +92,15 @@ INSERT INTO `t_b_news` VALUES ('10', '东few费等软腭', '1', '1', '0', '扥�
 INSERT INTO `t_b_news` VALUES ('11', '测试修改能', '1', '1', '0', '撒扥东啊发<strong>撒扥东啊发</strong><strong>赛奥法sad东安抚</strong><strong>sdaf东安抚</strong><strong>asdf&amp;nbsp;</strong><strong><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=7009b35807274b0b8db178833144d171\" alt=\"6712.png\" /></strong><strong>狂啊赛佛领囧</strong>', '2018-04-01 17:28:04', '2018-04-01 17:28:06');
 INSERT INTO `t_b_news` VALUES ('12', '测试修改成功否', '1', '1', '0', '<p>&nbsp; &nbsp;萨芬东非<strong>赛发动发</strong><strong>阿赛发动安抚</strong><strong>东安抚东安抚</strong><strong>洗澡负债森</strong><strong>撒扥东非</strong><strong>在线崔满您看好</strong><strong>，口橡胶岑拽进动画</strong><strong>sad灵泛灵动案件&amp;nbsp;</strong>\n\n\n &nbsp; &nbsp;<strong>塞阀撒扥</strong> &amp;nbsp;<strong>我的红色字体</strong>\n\n\n &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>上一上车</strong>\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>5端月肉盾</strong>\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp;\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<strong>刚均衡</strong>\n &nbsp; &nbsp;</p><p><span style=\"color: rgb(255, 0, 0);\">扥根等</span></p><p>扥个放灯<span style=\"color: rgb(255, 0, 0);\">扥个df放灯fd</span></p><p>dfs该放松g&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p><p><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=21e848e979074a97aa9396362ea48932\" title=\"test\" alt=\"test.jpg\"/></p>', '2018-04-01 17:35:07', '2018-04-02 01:06:39');
 INSERT INTO `t_b_news` VALUES ('13', '测试销毁', '2', '1', '1', '思想扥东方', '2018-04-01 17:40:21', '2018-04-01 17:40:22');
-INSERT INTO `t_b_news` VALUES ('14', '测试销毁', '2', '1', '0', '撒扥领撒扥领翻看领', '2018-04-01 17:42:08', '2018-04-01 17:42:10');
+INSERT INTO `t_b_news` VALUES ('14', '测试销毁', '2', '1', '0', '<p>撒扥领撒扥领翻看领</p><p><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=057d06ef5c364407a4d334bda880c4c7\" title=\"6712\" alt=\"6712.png\"/></p>', '2018-04-01 17:42:08', '2018-04-06 14:19:44');
+INSERT INTO `t_b_news` VALUES ('18', '赛粉丝', '1', '1', '0', '<p>二团热的天&nbsp;</p><p>贵南鬼仓就跟</p><ol class=\" list-paddingleft-2\" style=\"list-style-type: decimal;\"><li><p>小催下扥个</p></li><li><p>方耿芳</p></li></ol><p><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=d55eb0d6eccf4b4783473619d54980c2\" title=\"6712\" alt=\"6712.png\"/></p>', '2018-04-06 14:37:24', '2018-04-06 14:41:17');
+INSERT INTO `t_b_news` VALUES ('19', '测试图', '2', '1', '1', null, '2018-04-12 01:35:07', null);
+INSERT INTO `t_b_news` VALUES ('20', '测试图2', '1', '1', '1', null, '2018-04-12 01:36:02', null);
+INSERT INTO `t_b_news` VALUES ('21', '测试图3', '1', '1', '1', null, '2018-04-12 01:37:43', null);
+INSERT INTO `t_b_news` VALUES ('22', '撒扥测试', '1', '1', '0', null, '2018-04-12 01:41:22', null);
+INSERT INTO `t_b_news` VALUES ('23', 'sad发动', '1', '1', '1', null, '2018-04-12 01:46:40', null);
+INSERT INTO `t_b_news` VALUES ('24', '赛发动', '2', '1', '1', null, '2018-04-12 01:48:07', null);
+INSERT INTO `t_b_news` VALUES ('25', '撒扥', '1', '1', '1', null, '2018-04-12 02:28:12', null);
 
 -- ----------------------------
 -- Table structure for t_b_project
@@ -97,7 +127,7 @@ CREATE TABLE `t_b_project` (
   `project_des` text COMMENT '项目介绍',
   `remark` varchar(500) DEFAULT NULL COMMENT '审核意见',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='项目表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='项目表';
 
 -- ----------------------------
 -- Records of t_b_project
@@ -105,7 +135,13 @@ CREATE TABLE `t_b_project` (
 INSERT INTO `t_b_project` VALUES ('1', '测试项目', null, '1200.00', '自己', '1470.00', null, null, '永久福利', '5000.00', null, '1', '1', null, '1', null, '1', null, null);
 INSERT INTO `t_b_project` VALUES ('2', '测试项目2', null, '6577.00', '我', '15985.00', null, null, '永久版权', '5000.00', '2018-04-04 00:23:52', '2', '2', null, '1', null, '0', null, null);
 INSERT INTO `t_b_project` VALUES ('3', '测试项目3', null, '11111.00', '蓝', '12122112.00', null, null, '哈哈哈', '158.00', '2018-04-04 00:27:07', '1', '3', null, '1', null, '1', null, null);
-INSERT INTO `t_b_project` VALUES ('4', '测试项目4', null, '58421.00', '哈哈', '14521.00', '2018-04-04 00:00:00', '2018-04-19 00:00:00', '阿龙定积分', '159852.00', '2018-04-04 00:36:15', '2', '2', null, '1', '1', '0', null, null);
+INSERT INTO `t_b_project` VALUES ('4', '测试项目4', null, '58421.00', '哈哈', '14521.00', '2018-04-04 00:00:00', '2018-04-19 00:00:00', '阿龙定积分', '159852.00', '2018-04-04 00:36:15', '2', '2', '2018-04-07 01:49:54', '1', '3', '0', '<p><img src=\"http://193.112.67.154:8080/viewImage?uuid=fe18bec64ca54c019f7cb21ac9d118c0\" title=\"6712\" alt=\"6712.png\"/></p><p>东发动安抚</p><p>扥改凤</p>', '东阿');
+INSERT INTO `t_b_project` VALUES ('7', 'xcvsd', null, '322.00', '32', '111.00', '2018-04-06 01:58:11', '2018-04-27 00:00:00', 'wqeqw', '222.00', '2018-04-06 01:58:56', '2', '1', null, '1', '1', '1', null, null);
+INSERT INTO `t_b_project` VALUES ('8', 'xfdgdsg', null, '33.00', '22', '333.00', '2018-04-06 01:59:47', '2018-04-19 00:00:00', 'werewr', '333.00', '2018-04-06 02:00:18', '1', '1', null, '1', '1', '1', null, null);
+INSERT INTO `t_b_project` VALUES ('9', '112', null, '111.00', 'qqq', '22.00', '2018-04-06 02:02:17', '2018-04-27 00:00:00', 'qweqwe', '111.00', '2018-04-06 02:02:42', '2', '1', null, '1', '1', '1', null, null);
+INSERT INTO `t_b_project` VALUES ('10', '212', null, '333.00', 'wqwq', '212.00', '2018-04-06 02:03:45', '2018-04-27 00:00:00', 'wqewq', '211.00', '2018-04-06 02:04:13', '2', '1', null, '1', '1', '1', null, null);
+INSERT INTO `t_b_project` VALUES ('11', '好灵儿吧', null, '21.00', 'we赛发动', '321.00', '2018-04-06 02:07:07', '2018-04-20 00:00:00', 'ewr3东风东方', '3214.00', '2018-04-06 02:07:53', '1', '3', '2018-04-06 04:41:11', '1', '3', '1', '<p>零三扥哦</p><p>塞饭龙儿按揭房</p><ul class=\" list-paddingleft-2\" style=\"list-style-type: disc;\"><li><p>赛发动范</p></li><li><p>赛力帆零件</p></li><li><p>东翻领赛按揭房</p></li><li><p>塞阀看似来</p><p><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=a78afc65920b4642a65fa1ecbddd0503\" title=\"6712\" alt=\"6712.png\"/></p></li><li><p>散开很看桑德<br/></p></li></ul>', 'zdfsaf');
+INSERT INTO `t_b_project` VALUES ('12', '增加了', null, '1221.00', '小扥', '322.00', '2018-04-06 02:11:35', '2018-04-18 00:00:00', '法等扥个', '456.00', '2018-04-06 02:12:21', '2', '1', '2018-04-06 04:23:20', '1', '4', '1', '<p>塞阀撒扥</p><ul class=\" list-paddingleft-2\" style=\"list-style-type: disc;\"><li><p>向翠玲</p></li><li><p>赛佛吃完</p></li><li><p>赛翻领赛季</p></li><li><p>塞饭欧成</p></li></ul><p><img src=\"http://localhost:8080/moviemanage/viewImage?uuid=64ca6a670d1241ce9c06a8eb21889c94\" title=\"6712\" alt=\"6712.png\"/></p><p>塞阀框架</p><p><span style=\"color: rgb(255, 0, 0);\">想到发展岭东路</span><br/></p><p><span style=\"color: rgb(255, 0, 0);\">性扥拽囧当</span></p><p><span style=\"color: rgb(255, 0, 0);\">小翠娘行测女</span></p>', 'sdfasdf');
 
 -- ----------------------------
 -- Table structure for t_sys_config
@@ -159,51 +195,58 @@ CREATE TABLE `t_sys_menu` (
   `type` int(11) DEFAULT NULL COMMENT '类型   0：目录   1：菜单   2：按钮',
   `icon` varchar(50) DEFAULT NULL COMMENT '菜单图标',
   `order_num` int(11) DEFAULT NULL COMMENT '排序',
+  `status` tinyint(2) DEFAULT '1' COMMENT '状态 1、可用 2、已删除',
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COMMENT='菜单管理';
 
 -- ----------------------------
 -- Records of t_sys_menu
 -- ----------------------------
-INSERT INTO `t_sys_menu` VALUES ('1', '0', '系统管理', null, null, '0', 'fa fa-cog', '0');
-INSERT INTO `t_sys_menu` VALUES ('2', '1', '用户列表', 'modules/sys/user.html', null, '1', 'fa fa-user', '1');
-INSERT INTO `t_sys_menu` VALUES ('3', '1', '角色管理', 'modules/sys/role.html', null, '1', 'fa fa-user-secret', '2');
-INSERT INTO `t_sys_menu` VALUES ('4', '1', '菜单管理', 'modules/sys/menu.html', null, '1', 'fa fa-th-list', '3');
-INSERT INTO `t_sys_menu` VALUES ('15', '2', '查看', null, 'sys:user:list,sys:user:info', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('16', '2', '新增', null, 'sys:user:save,sys:role:select', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('17', '2', '修改', null, 'sys:user:update,sys:role:select', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('18', '2', '删除', null, 'sys:user:delete', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('19', '3', '查看', null, 'sys:role:list,sys:role:info', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('20', '3', '新增', null, 'sys:role:save,sys:menu:list', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('21', '3', '修改', null, 'sys:role:update,sys:menu:list', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('22', '3', '删除', null, 'sys:role:delete', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('23', '4', '查看', null, 'sys:menu:list,sys:menu:info', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('24', '4', '新增', null, 'sys:menu:save,sys:menu:select', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('25', '4', '修改', null, 'sys:menu:update,sys:menu:select', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('26', '4', '删除', null, 'sys:menu:delete', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('29', '1', '系统日志', 'modules/sys/log.html', 'sys:log:list', '1', 'fa fa-file-text-o', '7');
-INSERT INTO `t_sys_menu` VALUES ('30', '1', '文件上传', 'modules/oss/oss.html', 'sys:oss:all', '1', 'fa fa-file-image-o', '6');
-INSERT INTO `t_sys_menu` VALUES ('31', '0', '项目管理', '', null, '0', 'fa fa-film', '3');
-INSERT INTO `t_sys_menu` VALUES ('40', '0', '会员管理', '', null, '0', 'fa fa-user', '1');
-INSERT INTO `t_sys_menu` VALUES ('41', '40', '会员列表', 'modules/member/member.html', null, '1', 'fa fa-user', '6');
-INSERT INTO `t_sys_menu` VALUES ('42', '41', '查看', null, 'sys:member:list,sys:member:info', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('43', '41', '新增', null, 'sys:member:save', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('44', '41', '修改', null, 'sys:member:update', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('45', '41', '删除', null, 'sys:member:delete', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('46', '0', '资讯管理', null, null, '0', 'fa fa-align-justify', '2');
-INSERT INTO `t_sys_menu` VALUES ('47', '46', '新闻资讯', 'modules/news/news.html', null, '1', 'fa  fa-align-justify', '6');
-INSERT INTO `t_sys_menu` VALUES ('48', '47', '查看', null, 'sys:news:list,sys:news:info', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('49', '47', '新增', null, 'sys:news:save', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('50', '47', '修改', null, 'sys:news:update', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('51', '47', '删除', null, 'sys:news:delete', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('52', '31', '项目管理', 'modules/project/project.html', null, '1', 'fa fa-film', '6');
-INSERT INTO `t_sys_menu` VALUES ('53', '52', '查看', null, 'project:project:list,project:project:info', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('54', '52', '新增', null, 'project:project:save', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('55', '52', '修改', null, 'project:project:update', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('56', '52', '删除', null, 'project:project:delete', '2', null, '6');
-INSERT INTO `t_sys_menu` VALUES ('57', '52', '提审', null, 'project:project:approval', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('58', '52', '审核', null, 'project:project:examine', '2', null, '0');
-INSERT INTO `t_sys_menu` VALUES ('59', '52', '发布', null, 'project:project:publish', '2', null, '0');
+INSERT INTO `t_sys_menu` VALUES ('1', '0', '系统管理', null, null, '0', 'fa fa-cog', '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('2', '1', '用户列表', 'modules/sys/user.html', null, '1', 'fa fa-user', '1', '1');
+INSERT INTO `t_sys_menu` VALUES ('3', '1', '角色管理', 'modules/sys/role.html', null, '1', 'fa fa-user-secret', '2', '1');
+INSERT INTO `t_sys_menu` VALUES ('4', '1', '菜单管理', 'modules/sys/menu.html', null, '1', 'fa fa-th-list', '3', '2');
+INSERT INTO `t_sys_menu` VALUES ('15', '2', '查看', null, 'sys:user:list,sys:user:info', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('16', '2', '新增', null, 'sys:user:save,sys:role:select', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('17', '2', '修改', null, 'sys:user:update,sys:role:select', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('18', '2', '删除', null, 'sys:user:delete', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('19', '3', '查看', null, 'sys:role:list,sys:role:info', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('20', '3', '新增', null, 'sys:role:save,sys:menu:list', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('21', '3', '修改', null, 'sys:role:update,sys:menu:list', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('22', '3', '删除', null, 'sys:role:delete', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('23', '4', '查看', null, 'sys:menu:list,sys:menu:info', '2', null, '0', '2');
+INSERT INTO `t_sys_menu` VALUES ('24', '4', '新增', null, 'sys:menu:save,sys:menu:select', '2', null, '0', '2');
+INSERT INTO `t_sys_menu` VALUES ('25', '4', '修改', null, 'sys:menu:update,sys:menu:select', '2', null, '0', '2');
+INSERT INTO `t_sys_menu` VALUES ('26', '4', '删除', null, 'sys:menu:delete', '2', null, '0', '2');
+INSERT INTO `t_sys_menu` VALUES ('29', '1', '系统日志', 'modules/sys/log.html', 'sys:log:list', '1', 'fa fa-file-text-o', '7', '2');
+INSERT INTO `t_sys_menu` VALUES ('30', '1', '文件上传', 'modules/oss/oss.html', 'sys:oss:all', '1', 'fa fa-file-image-o', '6', '2');
+INSERT INTO `t_sys_menu` VALUES ('31', '0', '项目管理', '', null, '0', 'fa fa-film', '3', '1');
+INSERT INTO `t_sys_menu` VALUES ('40', '0', '会员管理', '', null, '0', 'fa fa-user', '1', '1');
+INSERT INTO `t_sys_menu` VALUES ('41', '40', '会员列表', 'modules/member/member.html', null, '1', 'fa fa-user', '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('42', '41', '查看', null, 'sys:member:list,sys:member:info', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('43', '41', '新增', null, 'sys:member:save', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('44', '41', '修改', null, 'sys:member:update', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('45', '41', '删除', null, 'sys:member:delete', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('46', '0', '资讯管理', null, null, '0', 'fa fa-fw fa-newspaper-o', '2', '1');
+INSERT INTO `t_sys_menu` VALUES ('47', '46', '新闻资讯', 'modules/news/news.html', null, '1', 'fa  fa-fw fa-newspaper-o', '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('48', '47', '查看', null, 'sys:news:list,sys:news:info', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('49', '47', '新增', null, 'sys:news:save', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('50', '47', '修改', null, 'sys:news:update', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('51', '47', '删除', null, 'sys:news:delete', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('52', '31', '项目管理', 'modules/project/project.html', null, '1', 'fa fa-film', '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('53', '52', '查看', null, 'project:project:list,project:project:info', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('54', '52', '新增', null, 'project:project:save', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('55', '52', '修改', null, 'project:project:update', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('56', '52', '删除', null, 'project:project:delete', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('57', '52', '提审', null, 'project:project:approval', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('59', '52', '发布', null, 'project:project:publish', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('60', '31', '项目审核', 'modules/project/approvalpro.html', null, '1', null, '2', '1');
+INSERT INTO `t_sys_menu` VALUES ('61', '60', '审核', null, 'project:project:examine,project:project:approvallist', '2', null, '0', '1');
+INSERT INTO `t_sys_menu` VALUES ('62', '1', '附件记录', 'modules/project/attachs.html', null, '1', 'fa fa-file-code-o', '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('63', '62', '查看', null, 'project:attachs:list,project:attachs:info', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('64', '62', '新增', null, 'project:attachs:save', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('65', '62', '修改', null, 'project:attachs:update', '2', null, '6', '1');
+INSERT INTO `t_sys_menu` VALUES ('66', '62', '删除', null, 'project:attachs:delete', '2', null, '6', '1');
 
 -- ----------------------------
 -- Table structure for t_sys_role
@@ -233,15 +276,11 @@ CREATE TABLE `t_sys_role_menu` (
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   `menu_id` bigint(20) DEFAULT NULL COMMENT '菜单ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COMMENT='角色与菜单对应关系';
 
 -- ----------------------------
 -- Records of t_sys_role_menu
 -- ----------------------------
-INSERT INTO `t_sys_role_menu` VALUES ('1', '1', '31');
-INSERT INTO `t_sys_role_menu` VALUES ('2', '1', '52');
-INSERT INTO `t_sys_role_menu` VALUES ('3', '1', '53');
-INSERT INTO `t_sys_role_menu` VALUES ('4', '1', '58');
 INSERT INTO `t_sys_role_menu` VALUES ('5', '2', '1');
 INSERT INTO `t_sys_role_menu` VALUES ('6', '2', '2');
 INSERT INTO `t_sys_role_menu` VALUES ('7', '2', '15');
@@ -274,6 +313,9 @@ INSERT INTO `t_sys_role_menu` VALUES ('33', '2', '48');
 INSERT INTO `t_sys_role_menu` VALUES ('34', '2', '49');
 INSERT INTO `t_sys_role_menu` VALUES ('35', '2', '50');
 INSERT INTO `t_sys_role_menu` VALUES ('36', '2', '51');
+INSERT INTO `t_sys_role_menu` VALUES ('37', '1', '31');
+INSERT INTO `t_sys_role_menu` VALUES ('38', '1', '60');
+INSERT INTO `t_sys_role_menu` VALUES ('39', '1', '61');
 
 -- ----------------------------
 -- Table structure for t_sys_user
@@ -333,6 +375,6 @@ CREATE TABLE `t_sys_user_token` (
 -- ----------------------------
 -- Records of t_sys_user_token
 -- ----------------------------
-INSERT INTO `t_sys_user_token` VALUES ('1', '06da5adf1b1e68ac8510c9467796ce4f', '2018-04-04 00:47:53', '2018-04-04 00:17:53');
-INSERT INTO `t_sys_user_token` VALUES ('2', '2d520fc1142a94a47438d0e75558e36f', '2018-04-03 00:56:55', '2018-04-03 00:26:55');
+INSERT INTO `t_sys_user_token` VALUES ('1', '945947bd0cfa04b03ab1a30540309918', '2018-04-12 02:34:52', '2018-04-12 01:34:52');
+INSERT INTO `t_sys_user_token` VALUES ('2', '027dcd44cc1500d7d3b9fc0b225a3aee', '2018-04-06 16:36:31', '2018-04-06 15:36:31');
 INSERT INTO `t_sys_user_token` VALUES ('3', 'b0ab0f033e4248cf20cc8302c75a611a', '2018-04-03 01:00:48', '2018-04-03 00:30:48');
