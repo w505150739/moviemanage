@@ -1,5 +1,6 @@
 package com.movie.modules.attachs.controller;
 
+import com.movie.common.base.BaseController;
 import com.movie.common.utils.PageUtils;
 import com.movie.common.utils.R;
 import com.movie.modules.attachs.entity.AttachsEntity;
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -26,7 +31,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("project/attachs")
-public class AttachsController {
+public class AttachsController extends BaseController{
     @Autowired
     private AttachsService attachsService;
 
@@ -59,7 +64,8 @@ public class AttachsController {
     @RequestMapping("/save")
     @RequiresPermissions("project:attachs:save")
     public R save(@RequestBody AttachsEntity attachs){
-			attachsService.insert(attachs);
+
+        attachsService.insert(attachs);
 
         return R.ok();
     }
@@ -86,4 +92,14 @@ public class AttachsController {
         return R.ok();
     }
 
+    @RequestMapping("/deleteByUuid")
+    public R deleteByUuid(@RequestBody String [] deluuid){
+        for (int i = 0;i<deluuid.length;i++){
+            Map<String,Object> params = new HashMap<>();
+            String uuid = deluuid[i].substring( deluuid[i].lastIndexOf( "=" )+1 );
+            params.put("file_path",uuid);
+            attachsService.deleteByMap(params);
+        }
+        return R.ok();
+    }
 }

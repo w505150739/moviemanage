@@ -8,13 +8,22 @@ import com.movie.common.utils.Query;
 import com.movie.modules.attachs.dao.AttachsDao;
 import com.movie.modules.attachs.entity.AttachsEntity;
 import com.movie.modules.attachs.service.AttachsService;
+import org.apache.velocity.runtime.directive.Foreach;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
 @Service("attachsService")
+@Transactional
 public class AttachsServiceImpl extends ServiceImpl<AttachsDao, AttachsEntity> implements AttachsService {
+
+    @Autowired
+    private AttachsDao attachsDao;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -24,6 +33,16 @@ public class AttachsServiceImpl extends ServiceImpl<AttachsDao, AttachsEntity> i
         );
 
         return new PageUtils(page);
+    }
+
+    @Override
+    public List<String> getUuidByMap(Map<String, Object> params) {
+        List<String> uuidList = new ArrayList<String>();
+        List<AttachsEntity> list = attachsDao.getUuidByMap(params);
+        for (AttachsEntity attachsEntity : list){
+            uuidList.add(attachsEntity.getFilePath());
+        }
+        return uuidList;
     }
 
 }

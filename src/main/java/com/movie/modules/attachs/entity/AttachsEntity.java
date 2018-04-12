@@ -30,7 +30,7 @@ public class AttachsEntity implements Serializable {
 	/**
 	 * 文件类型
 	 */
-	private Integer type;
+	private String type;
 	/**
 	 * 状态 1、可用 2、已删除
 	 */
@@ -60,6 +60,8 @@ public class AttachsEntity implements Serializable {
 	 */
 	private Integer relationType;
 
+	private String filePath;
+
 	/**
 	 * 设置：
 	 */
@@ -87,13 +89,13 @@ public class AttachsEntity implements Serializable {
 	/**
 	 * 设置：文件类型
 	 */
-	public void setType(Integer type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	/**
 	 * 获取：文件类型
 	 */
-	public Integer getType() {
+	public String getType() {
 		return type;
 	}
 	/**
@@ -179,5 +181,13 @@ public class AttachsEntity implements Serializable {
 	 */
 	public Integer getRelationType() {
 		return relationType;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 }

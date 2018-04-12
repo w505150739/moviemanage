@@ -112,4 +112,27 @@ public class GlobalContants {
             return value;
         }
     }
+    /**
+     * 数据状态
+     */
+    public enum DataStatus {
+        /**
+         * 新闻资讯
+         */
+        OK(1),
+        /**
+         * 项目
+         */
+        DELETE(2);
+
+        private int value;
+
+        DataStatus(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }

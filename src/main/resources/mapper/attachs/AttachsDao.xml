@@ -15,7 +15,18 @@
         <result property="updateTime" column="update_time"/>
         <result property="relationId" column="relation_id"/>
         <result property="relationType" column="relation_type"/>
+        <result property="filePath" column="file_path"/>
     </resultMap>
 
+    <select id="getUuidByMap" parameterType="java.util.Map" resultType="com.movie.modules.attachs.entity.AttachsEntity">
+        select * from t_b_attachs where status = 1
+        <if test="relationId != null and relationId != '' ">
+            and relation_id =#{relationId}
+        </if>
+        <if test="relationType != null and relationType != ''">
+            and relation_type = #{relationType}
+        </if>
+
+    </select>
 
 </mapper>

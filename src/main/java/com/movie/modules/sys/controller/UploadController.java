@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -60,6 +61,16 @@ public class UploadController extends BaseController{
         String uuid = "";
         logger.info("文件上传参数" + params.toString());
         try {
+            if(params.containsKey("deluuid")){
+
+                String deluuid = params.get("deluuid").toString();
+            }
+//            for (int i = 0;i<params.get("deluuid").toString().length;i++){
+//                Map<String,Object> params = new HashMap<>();
+//                String uuid = deluuid[i].substring( deluuid[i].lastIndexOf( "=" )+1 );
+//                params.put("file_path",uuid);
+//                attachsService.deleteByMap(params);
+//            }
             if(file != null){
                 InputStream is = file.getInputStream();
                 OssUtils.getOssService(deployUtil.getOssflag());
@@ -69,9 +80,16 @@ public class UploadController extends BaseController{
              * uuid 不为空 附件表存入数据
              */
             if(StringUtils.isNotBlank(uuid)){
-                GlobalContants.AttachType.NEWS.getValue();
                 AttachsEntity attachsEntity = new AttachsEntity();
                 attachsEntity.setFileSize(Long.parseLong(params.get("size").toString()));
+                attachsEntity.setName(params.get("name").toString());
+                attachsEntity.setType(params.get("type").toString());
+                attachsEntity.setFilePath(uuid);
+                attachsEntity.setRelationType(Integer.parseInt(params.get("flagType").toString()));
+                attachsEntity.setSuffix(FileType.getSuffixByFilename(params.get("name").toString()));
+                attachsEntity.setRelationId(Long.parseLong(params.get("proId").toString()));
+                attachsEntity.setStatus(GlobalContants.DataStatus.OK.getValue());
+                attachsService.insert(attachsEntity);
             }
         }catch (Exception e){
             e.printStackTrace();
